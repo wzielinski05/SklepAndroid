@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shop</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_cart">Cart</string>
+    <string name="send_mail">Send mail</string>
+    <string name="about">About</string>
+    <string name="share">Share</string>
+    <string name="log_out">Log out</string>
+    <string name="prompt_password">Password</string>
+    <string name="log_in">Login</string>
+    <string name="witaj_w_sklpie_komputerx">Welcome in KOMPUTEREX</string>
+    <string name="succes_login">Succes!</string>
+    <string name="error_login">Error</string>
+</resources>
