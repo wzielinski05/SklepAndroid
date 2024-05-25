@@ -9,14 +9,18 @@
     <string name="prompt_email" translatable="false">Email</string>
     <string name="prompt_password">Hasło</string>
     <string name="log_in">Zaloguj się</string>
-    <string name="witaj_w_sklpie_komputerx">Witaj w KOMPUTERX</string>
+    <string name="witaj_w_sklpie_komputerx">Witaj w KOMPUTEREX</string>
     <string name="succes_login">Udało się zalogować</string>
     <string name="error_login">Błąd</string>
-    <string name="registerInfo">Nie masz konta? \nZarejestuj się!</string>
+    <string name="registerInfo">Nie masz konta?  Zarejestuj się!</string>
     <string name="registerInKomputerx">Zarejestruj się w KOMPUTEREX</string>
     <string name="register">Zarejestruj się</string>
     <string name="username">Nazwa użytkownika</string>
-    <string name="loginInfo">Masz już konto?\nZaloguj się!</string>
-    <string name="succes_register">Zarejestrowano!\nZaloguj się!</string>
+    <string name="loginInfo">Masz już konto? Zaloguj się!</string>
+    <string name="succes_register">Zarejestrowano! Zaloguj się!</string>
+    <string name="select">Wybierz</string>
+    <string name="choose_keyboard">Wybierz klawiaturę</string>
+    <string name="choose_mouse">Wybierz Myszkę</string>
+    <string name="amount">Ilość</string>
 
 </resources>

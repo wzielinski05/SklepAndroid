@@ -5,10 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".CartFragment">
 
-    <TextView
+    <ListView
+        android:listSelector="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        android:id="@+id/orderList"
+        android:divider="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Cart" />
+        android:layout_height="wrap_content">
+
+    </ListView>
 
 </FrameLayout>

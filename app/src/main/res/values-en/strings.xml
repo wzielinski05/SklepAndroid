@@ -10,6 +10,16 @@
     <string name="prompt_password">Password</string>
     <string name="log_in">Login</string>
     <string name="witaj_w_sklpie_komputerx">Welcome in KOMPUTEREX</string>
-    <string name="succes_login">Succes!</string>
+    <string name="succes_login">Success!</string>
     <string name="error_login">Error</string>
+    <string name="registerInfo">Don\'t have an account? Register!</string>
+    <string name="registerInKomputerx">Register at KOMPUTEREX</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="loginInfo">Already have an account? Log in!</string>
+    <string name="succes_register">Registered! Log in!</string>
+    <string name="select">Select</string>
+    <string name="choose_keyboard">Choose keyboard</string>
+    <string name="choose_mouse">Choose mouse</string>
+    <string name="amount">amount</string>
 </resources>

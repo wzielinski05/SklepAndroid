@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
-
     SharedPreferences sharedPreferences;
     DatabaseHelper myDBHelper;
 
@@ -35,13 +34,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDBHelper = new DatabaseHelper(this);
-        sharedPreferences = getApplicationContext().getSharedPreferences("shopData",0);
-        Log.i("AAAA", "onCreate: "+sharedPreferences.getAll());
-        if(!sharedPreferences.getBoolean("isLogin",false)){
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("shopData", 0);
+        if (!sharedPreferences.getBoolean("isLogin", false)) {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }
-
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -50,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-
-
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.frameLayout);
 
@@ -78,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     loadFrament(new HomeFragment());
                 }
-
-
                 return true;
             }
         });
