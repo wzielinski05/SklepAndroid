@@ -1,5 +1,6 @@
 package com.example.sklep;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,11 +9,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.sklep.customOrder.OrderRowAdapter;
@@ -20,6 +25,8 @@ import com.example.sklep.customOrder.OrderRowBean;
 import com.example.sklep.customRow.RowAdapter;
 import com.example.sklep.customRow.RowBean;
 import com.example.sklep.database.DatabaseHelper;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +42,10 @@ public class CartFragment extends Fragment {
     private ListView ordersListView;
     SQLiteDatabase db;
     SharedPreferences sharedPreferences;
+    Button clearBtn;
+    Button optionBtn;
     String TAG = "AAAA";
+    FrameLayout optionSheet;
 
 
     public CartFragment() {
@@ -56,7 +66,9 @@ public class CartFragment extends Fragment {
         OrderRowAdapter adapter = new OrderRowAdapter(getContext(), R.layout.order_custom_row, ordersList);
 
         ordersListView = (ListView) view.findViewById(R.id.orderList);
-
+        clearBtn = (Button) view.findViewById(R.id.clearBtn);
+        optionBtn = (Button) view.findViewById(R.id.toolsBtn);
+        optionSheet = (FrameLayout) view.findViewById(R.id.optionSheet);
         ordersListView.setAdapter(adapter);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
@@ -68,6 +80,10 @@ public class CartFragment extends Fragment {
             for (int i = 0; i < orders.length(); i++) {
                 float totalPrice = 0;
                 JSONObject order = new JSONObject(String.valueOf(orders.get(i)));
+                JSONObject userData = new JSONObject(sharedPreferences.getString("userDataJSON", "{}"));
+                if (order.getInt("userId") != userData.getInt("id")) {
+                    continue;
+                }
                 JSONObject computerData = new JSONObject(String.valueOf(order.getJSONObject("computer")));
                 Cursor computerCursor = db.query("products", null, "id = " + computerData.getInt("id"), null, null, null, null);
                 computerCursor.moveToFirst();
@@ -83,7 +99,8 @@ public class CartFragment extends Fragment {
                     addonsString.append(addonCursor.getString(1)).append("   ");
                     totalPrice += addonCursor.getFloat(2);
                 }
-                ordersList.add(new OrderRowBean(computerData.getInt("id"), computerName, String.valueOf(totalPrice), img, addonsString.toString()));
+                ordersList.add(new OrderRowBean(computerData.getInt("id"), computerName, String.valueOf(totalPrice), img, addonsString.toString(), computerData.getInt("amount")));
+
                 Log.i(TAG, "onViewCreated: " + order);
             }
         } catch (JSONException e) {
@@ -91,5 +108,18 @@ public class CartFragment extends Fragment {
         }
 
 
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("orders", "[]");
+                editor.apply();
+                startActivity(new Intent(getContext(), MainActivity.class));
+
+            }
+        });
+
+
     }
 }
+

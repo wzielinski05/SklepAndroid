@@ -6,15 +6,15 @@ public class OrderRowBean {
     public String price;
     public String img;
     public String addons;
+    public int amount;
 
-    public OrderRowBean() {
-    }
 
-    public OrderRowBean(int id, String productName, String price, String img, String addons) {
+    public OrderRowBean(int id, String productName, String price, String img, String addons, int amount) {
         this.id = id;
         this.productName = productName;
         this.price = price;
         this.img = img;
         this.addons = addons;
+        this.amount = amount;
     }
 }

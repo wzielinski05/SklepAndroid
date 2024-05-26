@@ -24,6 +24,9 @@ import com.example.sklep.database.DatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     rows++;
                 }
-                cursor.close();
-                Log.i(TAG, "onClick: " + rows);
                 if (view != null) {
                     InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -79,8 +80,20 @@ public class LoginActivity extends AppCompatActivity {
                             .setBackgroundTint(getResources().getColor(R.color.success_background))
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
+                    cursor.moveToFirst();
+                    JSONObject userDataObj = new JSONObject();
+                    try {
+                        userDataObj.put("email", cursor.getString(1));
+                        userDataObj.put("id", cursor.getInt(0));
+                        userDataObj.put("username", cursor.getString(3));
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLogin", true);
+                    editor.putString("userDataJSON", userDataObj.toString());
+
                     editor.apply();
                     editor.commit();
                     new Handler(getMainLooper()).postDelayed(

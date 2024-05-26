@@ -2,9 +2,11 @@ package com.example.sklep.customOrder;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,6 @@ public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
     }
 
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -59,10 +60,26 @@ public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
         byte[] imageAsBytes = Base64.decode(object.img, Base64.NO_PADDING);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
         holder.imgIcon.setImageBitmap(decodedByte);
-        holder.txtProductName.setText(object.productName);
+        holder.txtProductName.setText(object.amount + "x " + object.productName);
         holder.txtPrice.setText(object.price + " zł");
         holder.txtAddons.setText(object.addons);
 
+
+        row.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Log.i("AAA", "onClick: " + object.amount);
+                Intent i = new Intent(getContext(), OrderDetailsActivity.class);
+                i.putExtra("id", object.id);
+                i.putExtra("productName", object.productName);
+                i.putExtra("price", object.price);
+                i.putExtra("imgStr", object.img);
+                i.putExtra("addons", object.addons);
+                i.putExtra("amount", object.amount);
+                getContext().startActivity(i);
+            }
+        });
 
         return row;
     }

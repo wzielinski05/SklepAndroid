@@ -21,6 +21,14 @@
     <string name="select">Wybierz</string>
     <string name="choose_keyboard">Wybierz klawiaturę</string>
     <string name="choose_mouse">Wybierz Myszkę</string>
-    <string name="amount">Ilość</string>
+    <string name="amount">"Ilość: "</string>
+    <string name="chosen_keyboards">Wybrane klawiatury</string>
+    <string name="chosen_mouses">Wybrane myszki</string>
+    <string name="total_price">"Cena za wszystko: "</string>
+    <string name="save">Zapisz</string>
+    <string name="delete">Usuń</string>
+    <string name="addons">"Dodatki "</string>
+    <string name="clear">Wyczyść</string>
+    <string name="options">Opcje</string>
 
 </resources>

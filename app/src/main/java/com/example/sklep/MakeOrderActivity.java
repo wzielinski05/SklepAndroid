@@ -206,6 +206,9 @@ public class MakeOrderActivity extends AppCompatActivity {
                         addonsObj.put(addon);
                     }
                     order.put("addons", addons);
+                    JSONObject userData = new JSONObject(sharedPreferences.getString("userDataJSON", "{}"));
+                    order.put("userId", userData.getInt("id"));
+
                     orders.put(order);
                     editor.remove("orders");
                     editor.putString("orders", orders.toString());
