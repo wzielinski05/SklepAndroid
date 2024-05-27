@@ -29,5 +29,7 @@
     <string name="delete">Delete</string>
     <string name="addons">Addons</string>
     <string name="clear">Clear</string>
-    <string name="options">Options</string>
+    <string name="options">Tools</string>
+    <string name="emailStart">"Order for: "</string>
+    <string name="email_before">" and addons: "</string>
 </resources>

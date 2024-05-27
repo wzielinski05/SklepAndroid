@@ -43,10 +43,9 @@ public class CartFragment extends Fragment {
     SQLiteDatabase db;
     SharedPreferences sharedPreferences;
     Button clearBtn;
-    Button optionBtn;
     String TAG = "AAAA";
     FrameLayout optionSheet;
-
+    JSONObject userData;
 
     public CartFragment() {
         // Required empty public constructor
@@ -67,8 +66,7 @@ public class CartFragment extends Fragment {
 
         ordersListView = (ListView) view.findViewById(R.id.orderList);
         clearBtn = (Button) view.findViewById(R.id.clearBtn);
-        optionBtn = (Button) view.findViewById(R.id.toolsBtn);
-        optionSheet = (FrameLayout) view.findViewById(R.id.optionSheet);
+//        optionSheet = (FrameLayout) view.findViewById(R.id.optionSheet);
         ordersListView.setAdapter(adapter);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
@@ -77,10 +75,11 @@ public class CartFragment extends Fragment {
         JSONArray orders = null;
         try {
             orders = new JSONArray(sharedPreferences.getString("orders", "[]"));
+            if (orders.length() == 0) clearBtn.setEnabled(false);
             for (int i = 0; i < orders.length(); i++) {
                 float totalPrice = 0;
                 JSONObject order = new JSONObject(String.valueOf(orders.get(i)));
-                JSONObject userData = new JSONObject(sharedPreferences.getString("userDataJSON", "{}"));
+                userData = new JSONObject(sharedPreferences.getString("userDataJSON", "{}"));
                 if (order.getInt("userId") != userData.getInt("id")) {
                     continue;
                 }
@@ -111,8 +110,23 @@ public class CartFragment extends Fragment {
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JSONArray orders;
+                try {
+                    orders = new JSONArray(sharedPreferences.getString("orders", "[]"));
+                    Log.i(TAG, "onClick: " + orders.toString());
+                    for (int i = 0; i < orders.length(); i++) {
+                        if (orders.getJSONObject(i).getInt("userId") == userData.getInt("id")) {
+                            orders.remove(i);
+                            i--;
+
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("orders", "[]");
+                editor.putString("orders", orders.toString());
                 editor.apply();
                 startActivity(new Intent(getContext(), MainActivity.class));
 

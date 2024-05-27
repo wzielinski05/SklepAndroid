@@ -29,6 +29,8 @@
     <string name="delete">Usuń</string>
     <string name="addons">"Dodatki "</string>
     <string name="clear">Wyczyść</string>
-    <string name="options">Opcje</string>
+    <string name="options">Narzędzia</string>
+    <string name="emailStart">Zamówienie na</string>
+    <string name="email_before">" i na akcesoria: "</string>
 
 </resources>

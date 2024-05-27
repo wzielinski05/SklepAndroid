@@ -23,12 +23,6 @@
             android:textColor="@color/white"
             app:icon="@drawable/trash_solid" />
 
-        <Button
-            android:id="@+id/toolsBtn"
-            style="@style/Widget.Material3.Button.TonalButton.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/options" />
 
 
     </LinearLayout>
@@ -43,7 +37,6 @@
         android:listSelector="@android:color/transparent">
 
     </ListView>
-
 
 
 </FrameLayout>
