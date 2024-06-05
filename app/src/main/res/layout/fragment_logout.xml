@@ -9,14 +9,12 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:textColor="@color/white"
         android:id="@+id/logout_btn"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/log_out" />
-
 
 
 </FrameLayout>

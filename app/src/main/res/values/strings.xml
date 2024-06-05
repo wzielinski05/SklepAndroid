@@ -32,5 +32,7 @@
     <string name="options">Narzędzia</string>
     <string name="emailStart">Zamówienie na</string>
     <string name="email_before">" i na akcesoria: "</string>
+    <string name="about_info">Autorem jest Wiktor Zieliński 4p\njunior fullstack developer A100</string>
+    <string name="ok" translatable="false">OK</string>
 
 </resources>

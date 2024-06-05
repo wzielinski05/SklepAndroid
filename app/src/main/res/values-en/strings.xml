@@ -32,4 +32,5 @@
     <string name="options">Tools</string>
     <string name="emailStart">"Order for: "</string>
     <string name="email_before">" and addons: "</string>
+    <string name="about_info">Author is Wiktor Zieliński 4p\nJunior fullstack developer A100</string>
 </resources>
