@@ -12,11 +12,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_NAME = "name";
-
-
     public static final String DB_FILE_NAME = "shop.db";
     public static final int DB_VERSION = 1;
-
     public static final String SQl_CREATE = "CREATE TABLE " + USER_TABLE_NAME + "( id INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + " VARCHAR(255) UNIQUE, " + COLUMN_PASSWORD + " VARCHAR (255), " + COLUMN_NAME + " VARCHAR(255) );";
     public static final String SQL_DELETE_USER = "DROP TABLE " + USER_TABLE_NAME;
     public static final String SQL_DELETE_PRODUCTS = "DROP TABLE products";
@@ -41,6 +38,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_PRODUCTS);
         onCreate(db);
     }
-
-
 }

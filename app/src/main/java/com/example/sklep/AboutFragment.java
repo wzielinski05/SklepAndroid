@@ -32,11 +32,9 @@ public class AboutFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_about, container, false);
     }
 
@@ -51,14 +49,12 @@ public class AboutFragment extends Fragment {
                         .setTextColor(getResources().getColor(R.color.white))
                         .show();
                 Toast.makeText(getContext(), getString(R.string.about_info), Toast.LENGTH_LONG).show();
-
                 NotificationChannel channel = new NotificationChannel("1", "chanel", NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setDescription("desc");
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "1")
                         .setSmallIcon(R.drawable.computer_solid)
                         .setContentTitle(getString(R.string.about))
                         .setContentText(getString(R.string.about_info));
-
                 NotificationManager manager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                 manager.createNotificationChannel(channel);
                 manager.notify(0, builder.build());
@@ -81,7 +77,5 @@ public class AboutFragment extends Fragment {
             }
         });
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 }

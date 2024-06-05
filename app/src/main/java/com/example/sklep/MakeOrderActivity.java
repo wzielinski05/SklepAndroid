@@ -85,14 +85,12 @@ public class MakeOrderActivity extends AppCompatActivity {
         productName.setText(extras.getString("productName"));
         productPrice.setText(extras.getString("price") + " zł");
         totalPriceView.setText(extras.getString("price") + " zł");
-
         byte[] imageAsBytes = Base64.decode(extras.getString("imgStr"), Base64.NO_PADDING);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
         productImg.setImageBitmap(decodedByte);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext().getApplicationContext());
         db = databaseHelper.getWritableDatabase();
-
         Cursor cursorKeyboard = db.query("products", null, "type = 'keyboard'", null, null, null, null);
         cursorKeyboard.moveToFirst();
         while (!cursorKeyboard.isAfterLast()) {
@@ -119,7 +117,6 @@ public class MakeOrderActivity extends AppCompatActivity {
                     } else {
                         addons.remove(Integer.valueOf(id));
                     }
-
                 }
             });
             checkboxLayout.addView(keyboardImg);
@@ -128,7 +125,6 @@ public class MakeOrderActivity extends AppCompatActivity {
             keyboardListLayout.addView(checkboxLayout);
             cursorKeyboard.moveToNext();
         }
-
 
         Cursor cursorMouse = db.query("products", null, "type = 'mouse'", null, null, null, null);
         cursorMouse.moveToFirst();
@@ -147,7 +143,6 @@ public class MakeOrderActivity extends AppCompatActivity {
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(cursorMouse.getString(1));
             checkBox.setPadding(10, 15, 10, 15);
-
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -161,26 +156,20 @@ public class MakeOrderActivity extends AppCompatActivity {
 
                 }
             });
-
             checkboxLayout.addView(mouseImg);
             checkboxLayout.addView(checkBox);
             checkboxLayout.addView(priceText);
-
             mouseListLayout.addView(checkboxLayout);
             cursorMouse.moveToNext();
         }
-
-
         toolbar.setNavigationOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
         });
-
         amountSlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             int oldValue;
 
             @Override
             public void onStartTrackingTouch(@NonNull Slider slider) {
-
             }
 
             @Override
@@ -189,7 +178,6 @@ public class MakeOrderActivity extends AppCompatActivity {
                 totalPriceView.setText(String.valueOf(totalPrice.getTotalPrice()) + " zł");
                 amount = (int) slider.getValue();
             }
-
         });
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,7 +215,6 @@ public class MakeOrderActivity extends AppCompatActivity {
         private float corePrice = 0;
         private float addons = 0;
         DecimalFormat df = new DecimalFormat();
-
 
         public TotalPrice(float corePrice) {
             this.corePrice = corePrice;

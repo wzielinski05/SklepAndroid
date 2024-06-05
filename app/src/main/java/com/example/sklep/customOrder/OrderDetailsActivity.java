@@ -40,13 +40,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView computerPrice;
     TextView computerAmount;
     TextView addonsView;
-
     TextView totalPriceView;
     String TAG = "AAAA";
     SQLiteDatabase db;
     Button optionBtn;
     SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +57,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
             return insets;
         });
         Bundle extras = getIntent().getExtras();
-
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
         sharedPreferences = getApplicationContext().getSharedPreferences("shopData", 0);
-
         toolbar = findViewById(R.id.topAppBar);
         productImg = findViewById(R.id.productImg);
         computerName = findViewById(R.id.productName);
@@ -73,9 +69,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         totalPriceView = findViewById(R.id.totalPrice);
         optionBtn = findViewById(R.id.toolsBtn);
         Cursor cursor = db.query("products", null, "id = " + extras.getInt("id"), null, null, null, null);
-
         cursor.moveToFirst();
-
 
         toolbar.setTitle(extras.getString("productName"));
         computerName.setText(extras.getString("productName"));
@@ -86,10 +80,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Bitmap decodedByte = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
         productImg.setImageBitmap(decodedByte);
         addonsView.setText(" " + extras.getString("addons").replace("  ", "\n"));
-
-
-        Log.i(TAG, "onCreate: " + extras.getString("addons"));
-
 
         toolbar.setNavigationOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -107,8 +97,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-
-
                 LinearLayout shareBtn = view1.findViewById(R.id.shareBtn);
                 shareBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -123,10 +111,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
                         sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.emailStart) + extras.getInt("amount") + "x " + extras.getString("productName"));
                         sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.emailStart) + extras.getInt("amount") + "x " + extras.getString("productName") + getString(R.string.email_before) + extras.getString("addons"));
                         sendIntent.setType("text/plain");
-
                         Intent shareIntent = Intent.createChooser(sendIntent, null);
                         startActivity(shareIntent);
-
                     }
                 });
             }

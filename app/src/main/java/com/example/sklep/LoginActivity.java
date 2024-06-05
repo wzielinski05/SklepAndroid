@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     Button registerBtn;
     TextInputEditText email;
     TextInputEditText password;
-
     SharedPreferences sharedPreferences;
 
     @Override
@@ -52,14 +51,11 @@ public class LoginActivity extends AppCompatActivity {
         });
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
-//        db.execSQL("INSERT INTO users (email,password,name) VALUES ('test@test.com',1234,'Dinus')");
-
         submitBtn = findViewById(R.id.submitBtn);
         registerBtn = findViewById(R.id.registerBtn);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         sharedPreferences = getApplicationContext().getSharedPreferences("shopData", 0);
-
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLogin", true);
                     editor.putString("userDataJSON", userDataObj.toString());
-
                     editor.apply();
                     editor.commit();
                     new Handler(getMainLooper()).postDelayed(
@@ -113,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

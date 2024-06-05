@@ -8,7 +8,6 @@ public class OrderRowBean {
     public String addons;
     public int amount;
 
-
     public OrderRowBean(int id, String productName, String price, String img, String addons, int amount) {
         this.id = id;
         this.productName = productName;

@@ -32,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
     Button submitBtn;
     Button loginBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +43,13 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
-//        db.execSQL("INSERT INTO users (email,password,name) VALUES ('test@test.com',1234,'Dinus')");
-
         submitBtn = findViewById(R.id.submitBtn);
         loginBtn = findViewById(R.id.loginBtn);
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,9 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                 values.put("email", emailText);
                 values.put("name", usernameText);
                 values.put("password", passwordText);
-
                 long result = db.insert("users", null, values);
-
                 if (view != null) {
                     InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -83,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
                             .setBackgroundTint(getResources().getColor(R.color.success_background))
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
-
                     new Handler(getMainLooper()).postDelayed(
                             new Runnable() {
                                 @Override
@@ -94,8 +86,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }, 1000
                     );
                 }
-
-
             }
         });
 
@@ -106,7 +96,5 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }

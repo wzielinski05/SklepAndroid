@@ -23,7 +23,6 @@ import com.example.sklep.customRow.RowBean;
 import java.util.List;
 
 public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
-
     Context context;
     int layoutResourceId;
     List<OrderRowBean> data;
@@ -35,13 +34,11 @@ public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
         this.data = data;
     }
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         OrderRowBeanHolder holder = null;
-
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -50,12 +47,10 @@ public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
             holder.txtProductName = (TextView) row.findViewById(R.id.orderProductName);
             holder.txtPrice = (TextView) row.findViewById(R.id.orderPrice);
             holder.txtAddons = (TextView) row.findViewById(R.id.orderAddons);
-
             row.setTag(holder);
         } else {
             holder = (OrderRowBeanHolder) row.getTag();
         }
-
         OrderRowBean object = data.get(position);
         byte[] imageAsBytes = Base64.decode(object.img, Base64.NO_PADDING);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
@@ -63,10 +58,7 @@ public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
         holder.txtProductName.setText(object.amount + "x " + object.productName);
         holder.txtPrice.setText(object.price + " zł");
         holder.txtAddons.setText(object.addons);
-
-
         row.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Log.i("AAA", "onClick: " + object.amount);
@@ -80,7 +72,6 @@ public class OrderRowAdapter extends ArrayAdapter<OrderRowBean> {
                 getContext().startActivity(i);
             }
         });
-
         return row;
     }
 

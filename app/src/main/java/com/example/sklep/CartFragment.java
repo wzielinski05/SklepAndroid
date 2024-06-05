@@ -63,15 +63,11 @@ public class CartFragment extends Fragment {
 
         ordersList = new ArrayList<OrderRowBean>();
         OrderRowAdapter adapter = new OrderRowAdapter(getContext(), R.layout.order_custom_row, ordersList);
-
         ordersListView = (ListView) view.findViewById(R.id.orderList);
         clearBtn = (Button) view.findViewById(R.id.clearBtn);
-//        optionSheet = (FrameLayout) view.findViewById(R.id.optionSheet);
         ordersListView.setAdapter(adapter);
-
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
         db = databaseHelper.getWritableDatabase();
-
         JSONArray orders = null;
         try {
             orders = new JSONArray(sharedPreferences.getString("orders", "[]"));
@@ -105,8 +101,6 @@ public class CartFragment extends Fragment {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
-
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

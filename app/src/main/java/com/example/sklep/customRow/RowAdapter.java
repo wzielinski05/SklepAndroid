@@ -40,7 +40,6 @@ public class RowAdapter extends ArrayAdapter<RowBean> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         RowBeanHolder holder = null;
-
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -54,18 +53,13 @@ public class RowAdapter extends ArrayAdapter<RowBean> {
         } else {
             holder = (RowBeanHolder) row.getTag();
         }
-
         RowBean object = data.get(position);
-
         byte[] imageAsBytes = Base64.decode(object.img, Base64.NO_PADDING);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
         holder.imgIcon.setImageBitmap(decodedByte);
         holder.txtProductName.setText(object.productName);
         holder.txtPrice.setText(object.price + " zł");
-
-
         row.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), MakeOrderActivity.class);
@@ -76,8 +70,6 @@ public class RowAdapter extends ArrayAdapter<RowBean> {
                 getContext().startActivity(i);
             }
         });
-
-
         return row;
     }
 

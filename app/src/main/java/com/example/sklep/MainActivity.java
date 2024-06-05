@@ -38,13 +38,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDBHelper = new DatabaseHelper(this);
-
         sharedPreferences = getApplicationContext().getSharedPreferences("shopData", 0);
         if (!sharedPreferences.getBoolean("isLogin", false)) {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }
-
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         }
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.frameLayout);
-
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -82,10 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         loadFrament(new HomeFragment());
-
-
     }
-
 
     private void loadFrament(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

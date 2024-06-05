@@ -31,19 +31,13 @@ public class LogoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_logout, container, false);
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         logout = view.findViewById(R.id.logout_btn);
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
